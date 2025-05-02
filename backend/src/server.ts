@@ -1,12 +1,13 @@
 import { app } from "./app";
+import { env } from "./env";
 
 app
   .listen({
     host: "0.0.0.0",
-    port: 3333,
+    port: env.PORT,
   })
   .then(() => {
-    console.log("🚀 HTTP Server is Running!");
+    console.log(`🚀 HTTP Server is Running on port ${env.PORT}!`);
   });
 
 //instaciando o servidor
