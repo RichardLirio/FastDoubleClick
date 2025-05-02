@@ -15,17 +15,18 @@ export class JsonHelpers {
     }
   }
 
-  public async insert(newClick: Clicks): Promise<any> {
+  public async insert(newClick: Clicks): Promise<Clicks | null> {
     try {
       const data = await this.read();
-      if (data) {
-        data.push(newClick);
-        await this.write(data);
-        return data;
+      if (!data) {
+        return null;
       }
+      data.push(newClick);
+      await this.write(data);
+      return newClick;
     } catch (error) {
       console.error("🚀 ~ JsonHelpers ~ update ~ error:", error);
-      return false;
+      return null;
     }
   }
 

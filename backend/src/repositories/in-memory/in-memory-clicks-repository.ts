@@ -1,6 +1,5 @@
 import { Clicks } from "@/@types/clicks";
 import { ClicksRepository } from "../clicks-repository";
-import { randomUUID } from "node:crypto";
 
 export class InMemoryClicksRepository implements ClicksRepository {
   public items: Clicks[] = [];
@@ -23,11 +22,15 @@ export class InMemoryClicksRepository implements ClicksRepository {
 
   async insert(data: Clicks) {
     const clicks = {
-      id: randomUUID(),
+      id: data.id,
       timestamp: new Date(),
       name: data.name,
       timeBetweenClicks: data.timeBetweenClicks,
     };
+
+    if (data.name === "nullo") {
+      return null;
+    }
 
     this.items.push(clicks);
 

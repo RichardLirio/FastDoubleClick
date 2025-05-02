@@ -1,5 +1,7 @@
 import { Clicks } from "@/@types/clicks";
 import { ClicksRepository } from "@/repositories/clicks-repository";
+import { randomUUID } from "node:crypto";
+import { InsertClickError } from "./error/insertClickError";
 
 interface CreateClicksUseCaseParams {
   timestamp: Date;
@@ -23,10 +25,15 @@ export class CreateClicksUseCase {
   }: CreateClicksUseCaseParams): Promise<CreateClicksUseCaseResponse> {
     const Clicks = await this.ClicksRepository.insert({
       //metodo do repositorio para criação de clicks
+      id: randomUUID(),
       timestamp,
       name,
       timeBetweenClicks,
     });
+
+    if (!Clicks) {
+      throw new InsertClickError();
+    }
 
     return {
       Clicks,

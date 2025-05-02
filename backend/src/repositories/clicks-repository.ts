@@ -1,5 +1,5 @@
-import { Clicks, ClicksInputData } from "@/@types/clicks";
+import { Clicks } from "@/@types/clicks";
 
 export interface ClicksRepository {
-  insert(data: ClicksInputData): Promise<Clicks>;
+  insert(data: Clicks): Promise<Clicks | null>;
 }
