@@ -16,6 +16,7 @@ export class CreateClicksUseCase {
   constructor(private ClicksRepository: ClicksRepository) {} //repositorio que será utilizado no caso de uso
 
   async execute({
+    //metodo execute, utilizado para executar o caso de uso
     timestamp,
     name,
     timeBetweenClicks,
