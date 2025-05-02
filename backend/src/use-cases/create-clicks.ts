@@ -4,7 +4,6 @@ import { randomUUID } from "node:crypto";
 import { InsertClickError } from "./error/insertClickError";
 
 interface CreateClicksUseCaseParams {
-  timestamp: Date;
   name: string;
   timeBetweenClicks: number;
 } //parametros que serão entregues ao caso de uso para registro de clicks
@@ -19,14 +18,15 @@ export class CreateClicksUseCase {
 
   async execute({
     //metodo execute, utilizado para executar o caso de uso
-    timestamp,
     name,
     timeBetweenClicks,
   }: CreateClicksUseCaseParams): Promise<CreateClicksUseCaseResponse> {
     const Clicks = await this.ClicksRepository.insert({
       //metodo do repositorio para criação de clicks
       id: randomUUID(),
-      timestamp,
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
       name,
       timeBetweenClicks,
     });

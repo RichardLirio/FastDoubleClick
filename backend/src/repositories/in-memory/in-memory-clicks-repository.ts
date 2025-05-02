@@ -23,7 +23,9 @@ export class InMemoryClicksRepository implements ClicksRepository {
   async insert(data: Clicks) {
     const clicks = {
       id: data.id,
-      timestamp: new Date(),
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
       name: data.name,
       timeBetweenClicks: data.timeBetweenClicks,
     };

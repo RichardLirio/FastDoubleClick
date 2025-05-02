@@ -15,7 +15,6 @@ describe("Create Clicks Use Case", () => {
   it("Está sendo possivel registrar um Click", async () => {
     const { Clicks } = await sut.execute({
       name: "Player1",
-      timestamp: new Date(),
       timeBetweenClicks: 350,
     });
 
@@ -27,7 +26,6 @@ describe("Create Clicks Use Case", () => {
     await expect(() =>
       sut.execute({
         name: "nullo",
-        timestamp: new Date(),
         timeBetweenClicks: 350,
       })
     ).rejects.toBeInstanceOf(InsertClickError);
