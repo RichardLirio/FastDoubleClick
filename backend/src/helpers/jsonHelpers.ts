@@ -1,6 +1,7 @@
+import { Clicks } from "@/@types/clicks";
 import fs from "node:fs/promises";
 
-//clase utilizada para manipular o arquivo json que será usado como banco de dados
+//classe utilizada para manipular o arquivo json que será usado como banco de dados
 export class JsonHelpers {
   public filePath: string = "./src/data/data.json";
 
@@ -14,7 +15,21 @@ export class JsonHelpers {
     }
   }
 
-  public async read(): Promise<any> {
+  public async insert(newClick: Clicks): Promise<any> {
+    try {
+      const data = await this.read();
+      if (data) {
+        data.push(newClick);
+        await this.write(data);
+        return data;
+      }
+    } catch (error) {
+      console.error("🚀 ~ JsonHelpers ~ update ~ error:", error);
+      return false;
+    }
+  }
+
+  public async read(): Promise<Clicks[] | null> {
     try {
       const data = JSON.parse(await fs.readFile(this.filePath, "utf-8"));
       return data;
@@ -24,26 +39,13 @@ export class JsonHelpers {
     }
   }
 
-  public async update(newData: any): Promise<any> {
-    try {
-      const data = await this.read();
-      if (data) {
-        const result = [...data, ...newData];
-        await this.write(result);
-        return result;
-      }
-    } catch (error) {
-      console.error("🚀 ~ JsonHelpers ~ update ~ error:", error);
-      return false;
-    }
-  }
-
   public async delete(): Promise<any> {
     try {
-      await fs.unlink(this.filePath);
+      await this.write([]);
+      return true;
     } catch (error) {
       console.error("🚀 ~ JsonHelpers ~ delete ~ error:", error);
-      return false;
+      return null;
     }
   }
 }

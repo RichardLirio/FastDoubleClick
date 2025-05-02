@@ -1,11 +1,10 @@
-import { JsonHelpers } from "../helpers/jsonHelpers";
 import { InMemoryClicksRepository } from "../repositories/in-memory/in-memory-clicks-repository";
 import { CreateClicksUseCase } from "./create-clicks";
 import { beforeEach, describe, expect, it } from "vitest";
 
 let clicksRepository: InMemoryClicksRepository;
 let sut: CreateClicksUseCase;
-
+//testes do caso de use de criação de clicks
 describe("Create Clicks Use Case", () => {
   beforeEach(() => {
     clicksRepository = new InMemoryClicksRepository();
