@@ -5,6 +5,16 @@ import { JsonHelpers } from "@/helpers/jsonHelpers";
 export class JsonFileClicksRepository implements ClicksRepository {
   //repositorio utilizado para salvar no arquivo json
   public jsonHelper: JsonHelpers = new JsonHelpers();
+
+  async findMany(page: number) {
+    const data = await this.jsonHelper.read();
+    if (!data) {
+      return [];
+    }
+
+    return data.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+  }
+
   async insert(data: Clicks) {
     const result = await this.jsonHelper.insert(data);
     if (!result) {

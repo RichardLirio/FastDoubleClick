@@ -4,21 +4,9 @@ import { ClicksRepository } from "../clicks-repository";
 export class InMemoryClicksRepository implements ClicksRepository {
   public items: Clicks[] = [];
 
-  //   async searchMany(query: string, page: number) {
-  //     return this.items
-  //       .filter((item) => item.title.includes(query))
-  //       .slice((page - 1) * 20, page * 20);
-  //   }
-
-  //   async findById(id: string): Promise<Gym | null> {
-  //     const gym = this.items.find((item) => item.id === id);
-
-  //     if (!gym) {
-  //       return null;
-  //     }
-
-  //     return gym;
-  //   }
+  async findMany(page: number) {
+    return this.items.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+  }
 
   async insert(data: Clicks) {
     const clicks = {

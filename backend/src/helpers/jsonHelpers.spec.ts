@@ -18,7 +18,9 @@ describe("CRUD JSON HELPER", () => {
     await sut.insert({
       id: randomUUID(),
       name: "Player1",
-      timestamp: new Date(),
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
       timeBetweenClicks: 350,
     });
 
@@ -32,14 +34,18 @@ describe("CRUD JSON HELPER", () => {
     await sut.insert({
       id: randomUUID(),
       name: "Player1",
-      timestamp: new Date(),
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
       timeBetweenClicks: 350,
     });
 
     await sut.insert({
       id: randomUUID(),
       name: "Player2",
-      timestamp: new Date(),
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
       timeBetweenClicks: 120,
     });
 
