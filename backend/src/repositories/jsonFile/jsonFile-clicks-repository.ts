@@ -12,7 +12,10 @@ export class JsonFileClicksRepository implements ClicksRepository {
       return [];
     }
 
-    return data.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+    const listaOrdenada = data.sort((a, b) => {
+      return a.timeBetweenClicks - b.timeBetweenClicks;
+    }); //ordeno a lista com os menores tempos primeiro
+    return listaOrdenada.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
   }
 
   async insert(data: Clicks) {

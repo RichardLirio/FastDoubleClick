@@ -28,7 +28,7 @@ describe("Fetch Clicks Use Case", () => {
         timeZone: "America/Sao_Paulo",
       }),
       name: "Player2",
-      timeBetweenClicks: 99,
+      timeBetweenClicks: 360,
     });
 
     const { Clicks } = await sut.execute({
@@ -62,5 +62,32 @@ describe("Fetch Clicks Use Case", () => {
       expect.objectContaining({ name: "Player21" }),
       expect.objectContaining({ name: "Player22" }),
     ]);
+  });
+
+  it("Está sendo possivel obter a lista de forma ordenada pelo timeBetweenClicks", async () => {
+    await clicksRepository.insert({
+      id: randomUUID(),
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
+      name: "Player1",
+      timeBetweenClicks: 350,
+    });
+
+    await clicksRepository.insert({
+      id: randomUUID(),
+      timestamp: new Date().toLocaleString("pt-BR", {
+        timeZone: "America/Sao_Paulo",
+      }),
+      name: "Player2",
+      timeBetweenClicks: 100,
+    });
+
+    const { Clicks } = await sut.execute({
+      page: 1,
+    });
+
+    expect(Clicks).toHaveLength(2);
+    expect(Clicks[0].name).toEqual("Player2");
   });
 });
