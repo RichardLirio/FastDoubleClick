@@ -7,6 +7,7 @@ let clicksRepository: InMemoryClicksRepository;
 let sut: CreateClicksUseCase;
 //testes do caso de use de criação de clicks
 describe("Create Clicks Use Case", () => {
+  //Seta antes de cada teste o repositorio utilizado e o caso de uso a ser testado
   beforeEach(() => {
     clicksRepository = new InMemoryClicksRepository();
     sut = new CreateClicksUseCase(clicksRepository);
