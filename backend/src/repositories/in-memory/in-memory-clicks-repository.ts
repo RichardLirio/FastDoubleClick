@@ -21,7 +21,7 @@ export class InMemoryClicksRepository implements ClicksRepository {
   //     return gym;
   //   }
 
-  async create(data: Clicks) {
+  async insert(data: Clicks) {
     const clicks = {
       id: randomUUID(),
       timestamp: new Date(),

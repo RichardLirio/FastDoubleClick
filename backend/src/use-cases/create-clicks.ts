@@ -21,7 +21,7 @@ export class CreateClicksUseCase {
     name,
     timeBetweenClicks,
   }: CreateClicksUseCaseParams): Promise<CreateClicksUseCaseResponse> {
-    const Clicks = await this.ClicksRepository.create({
+    const Clicks = await this.ClicksRepository.insert({
       //metodo do repositorio para criação de clicks
       timestamp,
       name,
