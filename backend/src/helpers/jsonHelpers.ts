@@ -40,10 +40,14 @@ export class JsonHelpers {
     }
   }
 
-  public async delete(): Promise<any> {
+  public async delete(): Promise<Clicks[] | null> {
     try {
       await this.write([]);
-      return true;
+      const data = await this.read();
+      if (!data) {
+        return null;
+      }
+      return data;
     } catch (error) {
       console.error("🚀 ~ JsonHelpers ~ delete ~ error:", error);
       return null;

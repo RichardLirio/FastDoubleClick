@@ -25,4 +25,12 @@ export class JsonFileClicksRepository implements ClicksRepository {
     }
     return result;
   }
+
+  async deleteAll() {
+    const result = await this.jsonHelper.delete();
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
 }

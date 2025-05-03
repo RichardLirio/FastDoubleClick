@@ -29,4 +29,12 @@ export class InMemoryClicksRepository implements ClicksRepository {
 
     return clicks;
   }
+
+  async deleteAll() {
+    this.items = [];
+    if (this.items.length > 1) {
+      return null;
+    }
+    return this.items;
+  }
 }
