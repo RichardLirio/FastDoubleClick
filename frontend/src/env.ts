@@ -1,5 +1,5 @@
 import { z } from "zod";
-//verificação das variaveis do ambiente
+
 const envSchema = z.object({
   NEXT_PUBLIC_API_BASE_URL: z.string().url(),
 });
@@ -7,6 +7,7 @@ const envSchema = z.object({
 const parsedEnv = envSchema.safeParse(process.env);
 
 if (!parsedEnv.success) {
+  console.log("erro");
   console.error(
     "Invalid enviroment variables.",
     parsedEnv.error.flatten().fieldErrors
