@@ -17,17 +17,19 @@
 
 ### Rotas Fastify:
   - `POST /clicks` → recebe e grava no JSON.
-    ```body
+    ```json                 
     {
       "name": "Player1",
       "timeBetweenClicks": number // tempo entre os clicks
     }
-  ```
+  
   - `GET /clicks` → recebe e grava no JSON
-    ```query
-    page=number // pagina contendo 20 registros ordenados por tempo
-  ```
-  ```reponse
+    ```
+    
+    query -> page:number // pagina contendo 20 registros ordenados por tempo
+  
+  Retorno
+  ```json
     [
       {
         "id": "uuid",
