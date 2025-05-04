@@ -44,7 +44,7 @@ describe("Fetch Clicks Use Case", () => {
   });
 
   it("Está sendo possivel obter uma lista paginada de Clicks", async () => {
-    for (let i = 1; i <= 22; i++) {
+    for (let i = 1; i <= 12; i++) {
       await clicksRepository.insert({
         id: randomUUID(),
         timestamp: new Date().toLocaleString("pt-BR", {
@@ -60,8 +60,8 @@ describe("Fetch Clicks Use Case", () => {
 
     expect(Clicks).toHaveLength(2);
     expect(Clicks).toEqual([
-      expect.objectContaining({ name: "Player21" }),
-      expect.objectContaining({ name: "Player22" }),
+      expect.objectContaining({ name: "Player11" }),
+      expect.objectContaining({ name: "Player12" }),
     ]);
   });
 

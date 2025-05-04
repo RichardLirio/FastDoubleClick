@@ -18,7 +18,7 @@ export class JsonFileClicksRepository implements ClicksRepository {
       return a.timeBetweenClicks - b.timeBetweenClicks;
     }); //ordeno a lista com os menores tempos primeiro
 
-    const Clicks = listaOrdenada.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+    const Clicks = listaOrdenada.slice((page - 1) * 10, page * 10); //retorna somente 10 itens por pagina
     const count = listaOrdenada.length;
     return { Clicks, count };
   }
