@@ -8,7 +8,7 @@ export class JsonFileClicksRepository implements ClicksRepository {
 
   public filePath: string = "./src/data/data.json";
 
-  async findMany(page: number) {
+  async findMany() {
     const data = await this.jsonHelper.read(this.filePath);
     if (!data) {
       return { Clicks: [], count: 0 };
@@ -18,7 +18,7 @@ export class JsonFileClicksRepository implements ClicksRepository {
       return a.timeBetweenClicks - b.timeBetweenClicks;
     }); //ordeno a lista com os menores tempos primeiro
 
-    const Clicks = listaOrdenada.slice((page - 1) * 10, page * 10); //retorna somente 10 itens por pagina
+    const Clicks = listaOrdenada;
     const count = listaOrdenada.length;
     return { Clicks, count };
   }

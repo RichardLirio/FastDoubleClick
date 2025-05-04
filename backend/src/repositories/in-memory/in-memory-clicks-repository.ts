@@ -4,11 +4,11 @@ import { ClicksRepository } from "../clicks-repository";
 export class InMemoryClicksRepository implements ClicksRepository {
   public items: Clicks[] = [];
 
-  async findMany(page: number) {
+  async findMany() {
     const listaOrdenada = this.items.sort((a, b) => {
       return a.timeBetweenClicks - b.timeBetweenClicks;
     }); //ordeno a lista com os menores tempos primeiro
-    const Clicks = listaOrdenada.slice((page - 1) * 10, page * 10); //retorna somente 10 itens por pagina
+    const Clicks = listaOrdenada;
     const count = this.items.length;
     return { Clicks, count };
   }

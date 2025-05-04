@@ -32,36 +32,12 @@ describe("Fetch Clicks Use Case", () => {
       timeBetweenClicks: 360,
     });
 
-    const { Clicks } = await sut.execute({
-      page: 1,
-    });
+    const { Clicks } = await sut.execute();
 
     expect(Clicks).toHaveLength(2);
     expect(Clicks).toEqual([
       expect.objectContaining({ name: "Player1" }),
       expect.objectContaining({ name: "Player2" }),
-    ]);
-  });
-
-  it("Está sendo possivel obter uma lista paginada de Clicks", async () => {
-    for (let i = 1; i <= 12; i++) {
-      await clicksRepository.insert({
-        id: randomUUID(),
-        timestamp: new Date().toLocaleString("pt-BR", {
-          timeZone: "America/Sao_Paulo",
-        }),
-        name: `Player${i}`,
-        timeBetweenClicks: i + 100,
-      });
-    }
-    const { Clicks } = await sut.execute({
-      page: 2,
-    });
-
-    expect(Clicks).toHaveLength(2);
-    expect(Clicks).toEqual([
-      expect.objectContaining({ name: "Player11" }),
-      expect.objectContaining({ name: "Player12" }),
     ]);
   });
 
@@ -84,9 +60,7 @@ describe("Fetch Clicks Use Case", () => {
       timeBetweenClicks: 100,
     });
 
-    const { Clicks } = await sut.execute({
-      page: 1,
-    });
+    const { Clicks } = await sut.execute();
 
     expect(Clicks).toHaveLength(2);
     expect(Clicks[0].name).toEqual("Player2");
