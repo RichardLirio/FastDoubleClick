@@ -11,8 +11,10 @@ import CountUp from "./cout-up";
 import { api } from "@/data/api";
 import { Clicks } from "@/data/types/clicks";
 
-let data = await api("/clicks");
-let posts: { Clicks: Clicks[] } = await data.json();
+let data = await api("/clicks", {
+  cache: "no-store",
+});
+let clicks: { Clicks: Clicks[]; count: number } = await data.json();
 
 export default async function HeroSection() {
   return (
@@ -54,7 +56,7 @@ export default async function HeroSection() {
                   <h1 className="text-3xl font-medium mb-2">Mais de</h1>
                   <CountUp
                     from={0}
-                    to={posts.Clicks.length * 2}
+                    to={clicks.count * 2}
                     separator=","
                     direction="up"
                     duration={1}
