@@ -23,10 +23,7 @@
       "timeBetweenClicks": number // tempo entre os clicks
     }
   
-  - `GET /clicks` → recebe e grava no JSON
-    ```
-    
-  
+  - `GET /clicks` → devolve lista de Clicks
   Retorno
   ```json
     [
