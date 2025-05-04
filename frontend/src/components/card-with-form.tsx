@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -23,10 +22,6 @@ export function CardWithForm() {
       <CardContent>
         <FormPlay />
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button type="button">Deploy</Button>
-      </CardFooter>
     </Card>
   );
 }
