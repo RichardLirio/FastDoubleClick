@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+import { MousePointerClick } from "lucide-react";
 
 function FormPlay() {
   const [name, setName] = useState(""); //seta variavel para o nome do jogador
@@ -39,11 +41,16 @@ function FormPlay() {
             value={name}
             onChange={(e) => {
               setName(e.target.value);
-              if (e.target.value.trim() !== "") setClickEnabled(true);
+              if (e.target.value.trim() !== "")
+                setClickEnabled(true); //valida se o nome foi digitado
               else setClickEnabled(false);
             }}
           />
         </div>
+        <Button type="button" variant="destructive" onClick={handleClick}>
+          <MousePointerClick className="relative size-4" />
+          Realize um "Fast Double Click".
+        </Button>
       </div>
     </form>
   );
