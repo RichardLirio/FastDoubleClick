@@ -26,7 +26,6 @@
   - `GET /clicks` → recebe e grava no JSON
     ```
     
-    query -> page:number // pagina contendo 20 registros ordenados por tempo
   
   Retorno
   ```json
