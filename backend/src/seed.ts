@@ -8,7 +8,7 @@ export async function FileExist(file: string) {
     await fs.access(file, fs.constants.F_OK);
   } catch (error) {
     await fs.mkdir("./src/data"); //cria pasta data caso não exista
-    const saveFile = await jsonHelpers.write([]); //cria o arquivo json usado como banco de dados
+    const saveFile = await jsonHelpers.write([], "./src/data/data.json"); //cria o arquivo json usado como banco de dados
     if (!saveFile) {
       throw new Error("Erro ao criar o arquivo Json.");
     } else {

@@ -6,8 +6,10 @@ export class JsonFileClicksRepository implements ClicksRepository {
   //repositorio utilizado para salvar no arquivo json
   public jsonHelper: JsonHelpers = new JsonHelpers();
 
+  public filePath: string = "./src/data/data.json";
+
   async findMany(page: number) {
-    const data = await this.jsonHelper.read();
+    const data = await this.jsonHelper.read(this.filePath);
     if (!data) {
       return { Clicks: [], count: 0 };
     }
@@ -22,7 +24,7 @@ export class JsonFileClicksRepository implements ClicksRepository {
   }
 
   async insert(data: Clicks) {
-    const result = await this.jsonHelper.insert(data);
+    const result = await this.jsonHelper.insert(data, this.filePath);
     if (!result) {
       return null;
     }
@@ -30,7 +32,7 @@ export class JsonFileClicksRepository implements ClicksRepository {
   }
 
   async deleteAll() {
-    const result = await this.jsonHelper.delete();
+    const result = await this.jsonHelper.delete(this.filePath);
     if (!result) {
       return null;
     }
