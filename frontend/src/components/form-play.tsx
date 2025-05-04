@@ -29,6 +29,8 @@ type RegistertimeBetweenClicksSchema = z.infer<
   typeof registertimeBetweenClicksSchema
 >; //integração com o ts
 
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3333";
+
 function FormPlay() {
   const [name, setName] = useState(""); //seta variavel para o nome do jogador
   const [clickEnabled, setClickEnabled] = useState(false); //habilita botão para registro do tempo
@@ -62,7 +64,6 @@ function FormPlay() {
           timeBetweenClicks: interval,
         }; //tipagem do body caso o interval tenha sido registrado corretamente
 
-        const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
         const res = await fetch(`${baseUrl}/clicks`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -80,8 +81,9 @@ function FormPlay() {
       } else {
         toast("Intervalo não calculado corretamente.");
       }
-    } catch (err: any) {
-      toast(err.message || "Erro desconhecido.");
+    } catch (error) {
+      console.log("🚀 ~ handleSubmit ~ error:", error);
+      toast("Erro desconhecido.");
     } finally {
       setLoading(false);
     }
@@ -108,12 +110,12 @@ function FormPlay() {
         <Button
           type="button"
           variant="destructive"
-          className="text-white hover:bg-emerald-400"
+          className="text-white hover:bg-emerald-400 dark:hover:bg-emerald-400"
           onClick={handleClick}
           disabled={!clickEnabled}
         >
           <MousePointerClick className="relative size-4" />
-          Realize um "Fast Double Click".
+          Realize um `Fast Double Click`.
         </Button>
 
         {interval !== null && (
