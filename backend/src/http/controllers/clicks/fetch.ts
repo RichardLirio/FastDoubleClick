@@ -11,11 +11,12 @@ export async function fetch(request: FastifyRequest, reply: FastifyReply) {
 
   const fetchClickUseCase = makeFetchClicksUseCase();
 
-  const { Clicks } = await fetchClickUseCase.execute({
+  const { Clicks, count } = await fetchClickUseCase.execute({
     page,
   });
 
   return reply.status(200).send({
     Clicks,
+    count,
   });
 }

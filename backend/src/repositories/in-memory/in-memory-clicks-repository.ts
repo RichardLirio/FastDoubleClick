@@ -8,7 +8,9 @@ export class InMemoryClicksRepository implements ClicksRepository {
     const listaOrdenada = this.items.sort((a, b) => {
       return a.timeBetweenClicks - b.timeBetweenClicks;
     }); //ordeno a lista com os menores tempos primeiro
-    return listaOrdenada.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+    const Clicks = listaOrdenada.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+    const count = this.items.length;
+    return { Clicks, count };
   }
 
   async insert(data: Clicks) {

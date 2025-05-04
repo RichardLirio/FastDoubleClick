@@ -4,3 +4,8 @@ export type Clicks = {
   timestamp: string;
   timeBetweenClicks: number;
 };
+
+export type FetchClicks = {
+  Clicks: Clicks[];
+  count: number;
+};

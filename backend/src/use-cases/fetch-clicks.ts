@@ -7,6 +7,7 @@ interface FetchClicksUseCaseParams {
 
 interface FetchClicksUseCaseResponse {
   Clicks: Clicks[];
+  count: number;
 } //reposta retorna a lista de clicks
 
 export class FetchClicksUseCase {
@@ -17,10 +18,11 @@ export class FetchClicksUseCase {
     //metodo execute, utilizado para executar o caso de uso
     page,
   }: FetchClicksUseCaseParams): Promise<FetchClicksUseCaseResponse> {
-    const Clicks = await this.ClicksRepository.findMany(page);
+    const { Clicks, count } = await this.ClicksRepository.findMany(page);
 
     return {
       Clicks,
+      count,
     };
   }
 }

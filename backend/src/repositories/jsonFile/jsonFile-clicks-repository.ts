@@ -9,13 +9,16 @@ export class JsonFileClicksRepository implements ClicksRepository {
   async findMany(page: number) {
     const data = await this.jsonHelper.read();
     if (!data) {
-      return [];
+      return { Clicks: [], count: 0 };
     }
 
     const listaOrdenada = data.sort((a, b) => {
       return a.timeBetweenClicks - b.timeBetweenClicks;
     }); //ordeno a lista com os menores tempos primeiro
-    return listaOrdenada.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+
+    const Clicks = listaOrdenada.slice((page - 1) * 20, page * 20); //retorna somente 20 itens por pagina
+    const count = listaOrdenada.length;
+    return { Clicks, count };
   }
 
   async insert(data: Clicks) {
