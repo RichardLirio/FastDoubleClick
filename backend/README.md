@@ -24,7 +24,6 @@
     }
   
   - `GET /clicks` → devolve lista de Clicks
-  Retorno
   ```json
     [
       {
