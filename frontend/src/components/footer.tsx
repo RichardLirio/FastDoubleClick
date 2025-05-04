@@ -52,7 +52,7 @@ export default function FooterSection() {
         </div>
         <span className="text-muted-foreground block text-center text-sm">
           {" "}
-          © {new Date().getFullYear()} Fast Double Click, All rights reserved
+          © {new Date().getFullYear()} Fast Double Click.
         </span>
       </div>
     </footer>

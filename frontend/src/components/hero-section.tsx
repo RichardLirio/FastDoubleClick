@@ -28,14 +28,14 @@ export default async function HeroSection() {
                   <br /> Fast Double Click
                 </h1>
                 <p className="mx-auto mt-8 hidden max-w-2xl text-wrap text-lg sm:block">
-                  Meça a velocidade dos seus double clicks em milissegundos e
+                  Meça a velocidade dos seus Double Clicks em milissegundos e
                   dispute seu lugar no ranking. Demonstre precisão e rapidez
-                  dignas dos grandes duelistas do Velho Oeste digital.
+                  dignas dos grandes duelistas do velho oeste digital.
                 </p>
                 <p className="mx-auto mt-6 max-w-2xl text-wrap sm:hidden">
-                  Clique duplo mais rápido que bala de revólver e conquiste o
-                  ranking dos pistoleiros digitais. Teste seus reflexos e vire
-                  lenda no faroeste dos cliques!
+                  Faça Double Clicks mais rápido que bala de revólver e
+                  conquiste o ranking dos pistoleiros digitais. Teste seus
+                  reflexos e vire lenda no faroeste dos cliques!
                 </p>
                 {/* Bottão para começar a jogar */}
                 <div className="mt-8">
