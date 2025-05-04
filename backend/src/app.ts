@@ -9,4 +9,8 @@ app.register(fastifyCors, {
   credentials: true,
 });
 
+app.get("/health", async () => {
+  return { status: "ok" };
+});
+
 app.register(clicksRoutes);
