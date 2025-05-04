@@ -4,9 +4,21 @@ import React, { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { MousePointerClick, Terminal } from "lucide-react";
+import { MousePointerClick } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
+
+{
+  /**
+  Logica para registrar tempo entre os clicks:
+  1) liberar somente o input para o usuario digitar seu nome, pois é obrigatorio no corpo da requisição.
+  2) Assim que digitar o nome, habilitar o botão que irá realizar o registro do intervalo entre os dois clicks.
+  2.1) Date.now() vs performance.now() -> utilizar o perfomance pois possui maior precisão.
+  3) Salvar o intervalo e mostra-lo no seu input
+  4) Assim que esse input do intervalo for alimentado, desabilitar o botão do double click e habilitar o botão responsavel pelo submit
+  5) Ao realizar o submit zerar tudo e reiniciar a logica.
+  **/
+}
 
 const registertimeBetweenClicksSchema = z.object({
   name: z.string(),
@@ -96,7 +108,7 @@ function FormPlay() {
         <Button
           type="button"
           variant="destructive"
-          className="text-white"
+          className="text-white hover:bg-emerald-400"
           onClick={handleClick}
           disabled={!clickEnabled}
         >

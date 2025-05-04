@@ -13,6 +13,9 @@ import { Clicks } from "@/data/types/clicks";
 
 let data = await api("/clicks", {
   cache: "no-store",
+  next: {
+    revalidate: 60,
+  },
 });
 let clicks: { Clicks: Clicks[]; count: number } = await data.json();
 
@@ -63,7 +66,7 @@ export default async function HeroSection() {
                     className="count-up-text text-6xl"
                   />
                   <h1 className="text-3xl font-medium mt-3">
-                    Clicks registrados
+                    Clicks realizados
                   </h1>
                 </div>
               </div>
